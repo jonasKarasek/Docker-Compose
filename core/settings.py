@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cpgm1j5#embqvot*!ts7@01*2on8zl$07nh90w(jyqi+ojcg*2'
+SECRET_KEY = 'django-insecure-aobwepl&crn(l2w)$h48v7cmzz_3b6(prr8a_(s8!d-w*!_r+0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'newapp'
 ]
 
 MIDDLEWARE = [
@@ -73,27 +74,13 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'postgres',
-#        'USER': 'postgres',
-#        'PASSWORD': 'postgres',
-#        'HOST': 'db',
-#        'PORT': 5432,
-#    }
-#}
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django-app-db',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'db',
-        'PORT': 3306,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -135,3 +122,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
